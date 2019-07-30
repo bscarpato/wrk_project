@@ -1,0 +1,14 @@
+E:\Documentos\Code\Startup One\wrk.API\bin\Debug\netcoreapp2.2\wrk.API.deps.json
+E:\Documentos\Code\Startup One\wrk.API\bin\Debug\netcoreapp2.2\wrk.API.runtimeconfig.json
+E:\Documentos\Code\Startup One\wrk.API\bin\Debug\netcoreapp2.2\wrk.API.runtimeconfig.dev.json
+E:\Documentos\Code\Startup One\wrk.API\bin\Debug\netcoreapp2.2\wrk.API.dll
+E:\Documentos\Code\Startup One\wrk.API\bin\Debug\netcoreapp2.2\wrk.API.pdb
+E:\Documentos\Code\Startup One\wrk.API\obj\Debug\netcoreapp2.2\wrk.API.csprojAssemblyReference.cache
+E:\Documentos\Code\Startup One\wrk.API\obj\Debug\netcoreapp2.2\wrk.API.csproj.CoreCompileInputs.cache
+E:\Documentos\Code\Startup One\wrk.API\obj\Debug\netcoreapp2.2\wrk.API.RazorAssemblyInfo.cache
+E:\Documentos\Code\Startup One\wrk.API\obj\Debug\netcoreapp2.2\wrk.API.RazorAssemblyInfo.cs
+E:\Documentos\Code\Startup One\wrk.API\obj\Debug\netcoreapp2.2\wrk.API.AssemblyInfoInputs.cache
+E:\Documentos\Code\Startup One\wrk.API\obj\Debug\netcoreapp2.2\wrk.API.AssemblyInfo.cs
+E:\Documentos\Code\Startup One\wrk.API\obj\Debug\netcoreapp2.2\wrk.API.RazorTargetAssemblyInfo.cache
+E:\Documentos\Code\Startup One\wrk.API\obj\Debug\netcoreapp2.2\wrk.API.dll
+E:\Documentos\Code\Startup One\wrk.API\obj\Debug\netcoreapp2.2\wrk.API.pdb
