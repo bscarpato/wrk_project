@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using wrk.API.Data;
+using wrk.API.Dtos;
 using wrk.API.Models;
 
 namespace wrk.API.Controllers
@@ -17,20 +18,18 @@ namespace wrk.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(string username, string password)
+        public async Task<IActionResult> Register(UserForRegisterDto userForRegister)
         {
-            //validate request
-
-            username = username.ToLower();
-            if (await _repo.UserExists(username))
+            userForRegister.Username = userForRegister.Username.ToLower();
+            if (await _repo.UserExists(userForRegister.Username))
                 return BadRequest("Username já foi usado.");
 
             var userToCreate = new User
             {
-                Username = username
+                Username = userForRegister.Username
             };
 
-            var createdUser = await _repo.Register(userToCreate, password);
+            var createdUser = await _repo.Register(userToCreate, userForRegister.Password);
             return StatusCode(201);
         }
 
