@@ -29,9 +29,12 @@ namespace wrk.API
         {
             //Adiciona o DbContext usando o Sqlite
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddCors();
+            //AddSingleton => cria uma unica instancia do repository e usa o mesmo objeto em todos os cores. 
+            //AddTransient => cria uma instancia do repositorio nova para cada vez que é requisitada.
+            //AddScoped => esta no meio, entre o singleton e o transient. assim como o singleton, cria uma unica instancia do repository mas para cada escopo e cria essa instancia quando é requisitado. 
+            services.AddScoped<IAuthRepository, AuthRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +51,7 @@ namespace wrk.API
             }
 
             // app.UseHttpsRedirection();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();
         }
     }
