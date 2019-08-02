@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using wrk.API.Data;
 
 namespace wrk.API
@@ -35,6 +38,17 @@ namespace wrk.API
             //AddTransient => cria uma instancia do repositorio nova para cada vez que é requisitada.
             //AddScoped => esta no meio, entre o singleton e o transient. assim como o singleton, cria uma unica instancia do repository mas para cada escopo e cria essa instancia quando é requisitado. 
             services.AddScoped<IAuthRepository, AuthRepository>();
+            //Add and configure the authutenticaion service, to validade the JWT Token
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            {
+                opt.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +66,8 @@ namespace wrk.API
 
             // app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            //With the Authentication service configured, we need to tell the aplication to use it.
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
