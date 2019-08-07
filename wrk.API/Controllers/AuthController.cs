@@ -49,7 +49,8 @@ namespace wrk.API.Controllers
             if (userFromRepo == null)
                 return Unauthorized();
 
-            var claims = new[]{
+            var claims = new[]
+            {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Name, userFromRepo.Username)
             };
