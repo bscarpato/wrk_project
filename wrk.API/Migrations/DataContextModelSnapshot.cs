@@ -29,7 +29,7 @@ namespace wrk.API.Migrations
 
                     b.Property<string>("Url");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -86,9 +86,10 @@ namespace wrk.API.Migrations
 
             modelBuilder.Entity("wrk.API.Models.Photo", b =>
                 {
-                    b.HasOne("wrk.API.Models.User")
+                    b.HasOne("wrk.API.Models.User", "User")
                         .WithMany("Photos")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
