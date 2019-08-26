@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -36,13 +37,19 @@ namespace wrk.API
         {
             //Adiciona o DbContext usando o Sqlite
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(opt =>
+                {
+                    opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
             services.AddCors();
+            services.AddAutoMapper();
 
             //AddSingleton => cria uma unica instancia do repository e usa o mesmo objeto em todos os cores. 
             //AddTransient => cria uma instancia do repositorio nova para cada vez que é requisitada.
             //AddScoped => esta no meio, entre o singleton e o transient. assim como o singleton, cria uma unica instancia do repository mas para cada escopo e cria essa instancia quando é requisitado. 
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IWorkRepository, WorkRepository>();
             services.AddTransient<Seed>();
             //Add and configure the authutenticaion service, to validade the JWT Token
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
