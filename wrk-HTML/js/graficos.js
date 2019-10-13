@@ -45,8 +45,8 @@ jQuery(document).ready(function($) {
             labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"],
             datasets: [
                 {
-                    label: "Demanda de serviços para Pedreiro",
-                    data: [25, 128, 190, 145, 394, 388, 497],
+                    label: "Demanda de serviços na plataforma",
+                    data: [25, 128, 190, 145, 394, 688, 797],
                     backgroundColor: [
                         'rgba(30,144,255, .2)',
                     ],
@@ -56,7 +56,7 @@ jQuery(document).ready(function($) {
                     borderWidth: 2
                 },
                 {
-                    label: "Quantidade de Pedreiro na Plataforma",
+                    label: "Quantidade de profissionais cadastrados na plataforma",
                     data: [8, 14, 34, 63, 83, 90, 144],
                     backgroundColor: [
                         'rgba(0, 250, 220, .2)',
